@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Stroke Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+
+
+</head>
+  <body>
+    <!-- Header Section -->
+    <div class="page-header">
+      <div class="logo-title">
+        <img
+          src="https://img.icons8.com/fluency/48/stethoscope.png"
+          alt="Logo"
+          class="logo"
+        />
+        <h2>Stroke Predictor Form</h2>
+      </div>
+      <p id="currentTime"></p>
+    </div>
+        
+        <!-- Form Section -->
+        <div class="container">
+          <div class="form-section">
+              <form action="/predict" method="post">
+                  <div class="form-columns">
+                      <!-- Column 1 -->
+                      <div class="form-column">
+                          <label>
+                              Gender:
+                              <input name="gender" type="number" placeholder="0 = Female, 1 = Male" />
+                          </label>
+
+                          <label>
+                              Age:
+                              <input name="age" type="number" placeholder="example: 45" />
+                          </label>
+
+                          <label>
+                              Hypertension:
+                              <input name="hypertension" type="number" placeholder="0 = No, 1 = Yes" />
+                          </label>
+
+                          <label>
+                              Heart Disease:
+                              <input name="heart_disease" type="number" placeholder="0 = No, 1 = Yes" />
+                          </label>
+
+                          <label>
+                              Ever Married:
+                              <input name="ever_married" type="number" placeholder="0 = No, 1 = Yes" />
+                          </label>
+                      </div>
+
+                      <!-- Column 2 -->
+                      <div class="form-column">
+                          <label>
+                              Work Type:
+                              <select name="work_type">
+                                  <option>select Work Type</option>
+                                  <option value="0.050958">Private</option>
+                                  <option value="0.079365">Self-employed</option>
+                                  <option value="0.050228">Govt Job</option>
+                                  <option value="0.002911">Children</option>
+                                  <option value="0.021940">Never Worked</option>
+                              </select>
+                          </label>
+
+                          <label>
+                              Residence Type:
+                              <input name="Residence_type" type="number" placeholder="0 = Rural, 1 = Urban" />
+                          </label>
+
+                          <label>
+                              Average Glucose Level:
+                              <input name="avg_glucose_level" type="number" placeholder="example: 105.3" />
+                          </label>
+
+                          <label>
+                              BMI:
+                              <input name="bmi" type="number" placeholder="example: 26.5" />
+                          </label>
+
+                          <label>
+                              Smoking Status:
+                              <select name="smoking_status">
+                                  <option>select smoking status</option>
+                                  <option value="0">Never Smoked (0)</option>
+                                  <option value="1">Formerly Smoked (1)</option>
+                                  <option value="2">Smokes (2)</option>
+                              </select>
+                          </label>
+                      </div>
+                  </div>
+
+                  <button type="submit">🔍 Predict</button>
+                  {% if prediction %}
+                  <p style="margin-top: 20px; font-weight: bold; color: #333;">
+                      Prediction Result: {{ prediction }}
+                  </p>
+                  {% endif %}
+
+              </form>
+          </div>
+        </div>
+        
+
+    <script>
+      // Display current time
+      document.getElementById("currentTime").innerText =
+        "Current time: " + new Date().toLocaleString();
+    </script>
+  </body>
+</html>
