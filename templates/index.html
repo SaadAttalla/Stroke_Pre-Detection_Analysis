@@ -98,10 +98,15 @@
 
                   <button type="submit">🔍 Predict</button>
                   {% if prediction %}
-                  <p style="margin-top: 20px; font-weight: bold; color: #333;">
-                      Prediction Result: {{ prediction }}
-                  </p>
+                  <div class="prediction-box">
+                      <h3>Prediction Result:</h3>
+                      <p class="{% if 'Detected' in prediction %}prediction-risk{% else %}prediction-safe{% endif %}">
+                          {{ prediction }}
+                      </p>
+                  </div>
                   {% endif %}
+
+              
 
               </form>
           </div>
