@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score, f1_score, classification_report, con
 #from imblearn.over_sampling import SMOTE
 
 
-df = pd.read_csv("Balanced_Stroke_Data2.csv")
+df = pd.read_csv("Balanced_Stroke_Data.csv")
 X = df.drop("stroke", axis=1)
 y = df["stroke"]
 
