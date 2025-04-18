@@ -4,7 +4,6 @@ import joblib
 
 app = Flask(__name__)
 
-# Load your trained model
 model = joblib.load('stroke_model.pkl')
 
 @app.route('/')
@@ -14,7 +13,7 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Get form data
+# data
         gender = float(request.form['gender'])
         age = float(request.form['age'])
         hypertension = float(request.form['hypertension'])
@@ -26,12 +25,16 @@ def predict():
         bmi = float(request.form['bmi'])
         smoking_status = float(request.form['smoking_status'])
 
-        # Make prediction
+ # prediction
         features = np.array([[gender, age, hypertension, heart_disease, ever_married,
                               work_type, residence_type, avg_glucose_level, bmi, smoking_status]])
         prediction = model.predict(features)[0]
+        probability = model.predict_proba(features)[0][1] 
 
-        result = "Stroke Risk Detected ⚠️" if prediction == 1 else "No Stroke Risk ✅"
+        if prediction >= 0.5:
+            result = f"Stroke Risk Detected ⚠️ (Probability: {probability*100:.2f}%)"
+        else:
+            result = f"No Stroke Risk ✅ (Probability: {probability*100:.2f}%)"
 
         return render_template('index.html', prediction=result)
 
@@ -39,6 +42,4 @@ def predict():
         return render_template('index.html', prediction=f"Error: {str(e)}")
 
 if __name__ == '__main__':
-    app.run(debug=False )
-
-
+    app.run(debug=False)
