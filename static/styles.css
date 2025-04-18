@@ -105,3 +105,31 @@ button:hover {
   flex-direction: column;
 }
 
+
+.prediction-box {
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+    .prediction-box h3 {
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .prediction-box p {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+.prediction-risk {
+    color: red;
+}
+
+.prediction-safe {
+    color: green;
+}
+
